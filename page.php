@@ -246,96 +246,33 @@ foreach ($res as $row) {
 	</div>
 <?php endif; ?>
 
+<?php if ($page_layout == 'Photo Gallery Page Layout') : ?>
 
+	<div class="container py-4">
 
-<div class="container py-2">
+		<ul class="nav nav-pills sort-source sort-source-style-3 justify-content-center" data-sort-id="portfolio" data-option-key="filter" data-plugin-options="{'layoutMode': 'fitRows', 'filter': '*'}">
+			<li class="nav-item active" data-option-value=""><a class="nav-link text-1 text-uppercase active" href="#">Show All</a></li>
 
-	<ul class="nav nav-pills sort-source sort-source-style-3 justify-content-center" data-sort-id="portfolio" data-option-key="filter" data-plugin-options="{'layoutMode': 'fitRows', 'filter': '*'}">
-		<li class="nav-item" data-option-value="*"><a class="nav-link text-1 text-uppercase" href="#">Tümü</a></li>
-		<?php
-		$statement = $pdo->prepare("SELECT * FROM tbl_category_photo WHERE status=?");
-		$statement->execute(array('Active'));
-		$result = $statement->fetchAll(PDO::FETCH_ASSOC);
-		foreach ($result as $row) {
-			$temp_string = strtolower($row['p_category_name']);
-			$temp_slug = preg_replace('/[^A-Za-z0-9-]+/', '-', $temp_string);
-		?>
-			<li class="nav-item" data-option-value=".<?php echo $temp_slug; ?>"><a class="nav-link text-1 text-uppercase" href="#"><?php echo $row['p_category_name']; ?></a></li>
-		<?php
-		}
-		?>
-	</ul>
+			<?php
+			$statement = $pdo->prepare("SELECT * FROM tbl_category_photo WHERE status=?");
+			$statement->execute(array('Active'));
+			$result = $statement->fetchAll(PDO::FETCH_ASSOC);
+			foreach ($result as $row) {
+				$temp_string = strtolower($row['p_category_name']);
+				$temp_slug = preg_replace('/[^A-Za-z0-9-]+/', '-', $temp_string);
+			?>
+				<li class="nav-item" data-option-value=".<?php echo $temp_slug; ?>"><a class="nav-link text-1 text-uppercase" href="#"><?php echo $row['p_category_name']; ?></a></li>
+			<?php
+			}
+			?>
+		</ul>
 
-	<div class="sort-destination-loader sort-destination-loader-showing mt-4 pt-2">
-		<div class="row portfolio-list sort-destination" >
-			<div class="lightbox" data-sort-id="portfolio" data-plugin-options="{'delegate': 'a', 'type': 'image', 'gallery': {'enabled': true}, 'mainClass': 'mfp-with-zoom', 'zoom': {'enabled': true, 'duration': 300}}">
+		<div class="sort-destination-loader sort-destination-loader-showing mt-4 pt-2">
+			<div class="row portfolio-list sort-destination" data-sort-id="portfolio">
 
 				<?php
 				$i = 0;
 				$statement = $pdo->prepare("SELECT
-									t1.photo_id,
-									t1.photo_caption,
-									t1.photo_name,
-									t1.p_category_id,
-									t2.p_category_id,
-									t2.p_category_name,
-									t2.status
-									FROM tbl_photo t1
-									JOIN tbl_category_photo t2
-									ON t1.p_category_id = t2.p_category_id 
-									");
-				$statement->execute();
-				$result = $statement->fetchAll(PDO::FETCH_ASSOC);
-				foreach ($result as $row) {
-					$i++;
-					$temp_string = strtolower($row['p_category_name']);
-					$temp_slug = preg_replace('/[^A-Za-z0-9-]+/', '-', $temp_string);
-				?>
-
-					<div class="<?php echo $temp_slug; ?>">
-						<a class="d-inline-block img-thumbnail img-thumbnail-no-borders img-thumbnail-hover-icon mb-1 me-1 all" data-my-order="<?php echo $i; ?>" href="<?php echo BASE_URL; ?>assets/uploads/<?php echo $row['photo_name']; ?>" title="<?php echo $row['photo_caption']; ?>">
-							<img class="img-fluid" src="<?php echo BASE_URL; ?>assets/uploads/<?php echo $row['photo_name']; ?>" alt="Project Image" width="110" height="110">
-						</a>
-					</div>
-				<?php
-				}
-				?>
-			</div>
-
-		</div>
-	</div>
-
-</div>
-
-
-
-
-<?php if ($page_layout == 'Photo Gallery Page Layout') : ?>
-	<section class="gallery">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-
-					<ul class="gallery-menu">
-						<li class="filter" data-filter="all" data-role="button">All</li>
-						<?php
-						$statement = $pdo->prepare("SELECT * FROM tbl_category_photo WHERE status=?");
-						$statement->execute(array('Active'));
-						$result = $statement->fetchAll(PDO::FETCH_ASSOC);
-						foreach ($result as $row) {
-							$temp_string = strtolower($row['p_category_name']);
-							$temp_slug = preg_replace('/[^A-Za-z0-9-]+/', '-', $temp_string);
-						?>
-							<li class="filter" data-filter=".<?php echo $temp_slug; ?>" data-role="button"><?php echo $row['p_category_name']; ?></li>
-						<?php
-						}
-						?>
-					</ul>
-
-					<div id="mix-container">
-						<?php
-						$i = 0;
-						$statement = $pdo->prepare("SELECT
 					                           	t1.photo_id,
 												t1.photo_caption,
 												t1.photo_name,
@@ -347,66 +284,60 @@ foreach ($res as $row) {
 					                            JOIN tbl_category_photo t2
 					                            ON t1.p_category_id = t2.p_category_id 
 					                            ");
-						$statement->execute();
-						$result = $statement->fetchAll(PDO::FETCH_ASSOC);
-						foreach ($result as $row) {
-							$i++;
-							$temp_string = strtolower($row['p_category_name']);
-							$temp_slug = preg_replace('/[^A-Za-z0-9-]+/', '-', $temp_string);
-						?>
-							<div class="col-md-4 mix <?php echo $temp_slug; ?> all" data-my-order="<?php echo $i; ?>">
-								<div class="inner">
-									<div class="photo" style="background-image:url(<?php echo BASE_URL; ?>assets/uploads/<?php echo $row['photo_name']; ?>);"></div>
-									<div class="overlay"></div>
-									<div class="icons">
-										<div class="icons-inner">
-											<a class="gallery-photo" href="<?php echo BASE_URL; ?>assets/uploads/<?php echo $row['photo_name']; ?>"><i class="fa fa-search-plus"></i></a>
-										</div>
-									</div>
-								</div>
+				$statement->execute();
+				$result = $statement->fetchAll(PDO::FETCH_ASSOC);
+				foreach ($result as $row) {
+					$i++;
+					$temp_string = strtolower($row['p_category_name']);
+					$temp_slug = preg_replace('/[^A-Za-z0-9-]+/', '-', $temp_string);
+				?>
+					<div class="lightbox" data-plugin-options="{'delegate': 'a', 'type': 'image', 'gallery': {'enabled': true}, 'mainClass': 'mfp-with-zoom', 'zoom': {'enabled': true, 'duration': 300}}">
+						<div class="col-sm-6 col-lg-3 isotope-item <?php echo $temp_slug; ?> all" data-my-order="<?php echo $i; ?>">
+							<div class="portfolio-item">
+								<a class="d-inline-block img-thumbnail img-thumbnail-no-borders img-thumbnail-hover-icon mb-1 me-1" href="<?php echo BASE_URL; ?>assets/uploads/<?php echo $row['photo_name']; ?>">
+									<img class="img-fluid" src="<?php echo BASE_URL; ?>assets/uploads/<?php echo $row['photo_name']; ?>" alt="Project Image">
+								</a>
 							</div>
-						<?php
-						}
-						?>
-
+						</div>
 					</div>
+				<?php
+				}
+				?>
 
-				</div>
 			</div>
 		</div>
-	</section>
+
+	</div>
 <?php endif; ?>
 
 
-
-
-
 <?php if ($page_layout == 'Video Gallery Page Layout') : ?>
-	<section class="gallery">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
 
-					<ul class="gallery-menu">
-						<li class="filter" data-filter="all" data-role="button">All</li>
-						<?php
-						$statement = $pdo->prepare("SELECT * FROM tbl_category_video WHERE status=?");
-						$statement->execute(array('Active'));
-						$result = $statement->fetchAll(PDO::FETCH_ASSOC);
-						foreach ($result as $row) {
-							$temp_string = strtolower($row['v_category_name']);
-							$temp_slug = preg_replace('/[^A-Za-z0-9-]+/', '-', $temp_string);
-						?>
-							<li class="filter" data-filter=".<?php echo $temp_slug; ?>" data-role="button"><?php echo $row['v_category_name']; ?></li>
-						<?php
-						}
-						?>
-					</ul>
+	<div class="container py-4">
 
-					<div id="mix-container">
-						<?php
-						$i = 0;
-						$statement = $pdo->prepare("SELECT
+		<ul class="nav nav-pills sort-source sort-source-style-3 justify-content-center" data-sort-id="portfolio" data-option-key="filter" data-plugin-options="{'layoutMode': 'fitRows', 'filter': '*'}">
+			<li class="nav-item active" data-option-value=""><a class="nav-link text-1 text-uppercase active" href="#">Show All</a></li>
+
+			<?php
+			$statement = $pdo->prepare("SELECT * FROM tbl_category_video WHERE status=?");
+			$statement->execute(array('Active'));
+			$result = $statement->fetchAll(PDO::FETCH_ASSOC);
+			foreach ($result as $row) {
+				$temp_string = strtolower($row['v_category_name']);
+				$temp_slug = preg_replace('/[^A-Za-z0-9-]+/', '-', $temp_string);
+			?>
+				<li class="nav-item" data-option-value=".<?php echo $temp_slug; ?>"><a class="nav-link text-1 text-uppercase" href="#"><?php echo $row['v_category_name']; ?></a></li>
+			<?php
+			}
+			?>
+		</ul>
+
+		<div class="sort-destination-loader sort-destination-loader-showing mt-4 pt-2">
+			<div class="row portfolio-list sort-destination" data-sort-id="portfolio">
+
+				<?php
+				$i = 0;
+				$statement = $pdo->prepare("SELECT
 					                           	t1.video_id,
 												t1.video_title,
 												t1.video_iframe,
@@ -418,29 +349,28 @@ foreach ($res as $row) {
 					                            JOIN tbl_category_video t2
 					                            ON t1.v_category_id = t2.v_category_id 
 					                            ");
-						$statement->execute();
-						$result = $statement->fetchAll(PDO::FETCH_ASSOC);
-						foreach ($result as $row) {
-							$i++;
-							$temp_string = strtolower($row['v_category_name']);
-							$temp_slug = preg_replace('/[^A-Za-z0-9-]+/', '-', $temp_string);
-						?>
-							<div class="col-md-4 mix <?php echo $temp_slug; ?> all" data-my-order="<?php echo $i; ?>">
-								<div class="inner viframe">
-									<?php echo $row['video_iframe']; ?>
-								</div>
-							</div>
-						<?php
-						}
-						?>
-
+				$statement->execute();
+				$result = $statement->fetchAll(PDO::FETCH_ASSOC);
+				foreach ($result as $row) {
+					$i++;
+					$temp_string = strtolower($row['v_category_name']);
+					$temp_slug = preg_replace('/[^A-Za-z0-9-]+/', '-', $temp_string);
+				?>
+					<div class="col-sm-6 col-lg-6 isotope-item <?php echo $temp_slug; ?> all" data-my-order="<?php echo $i; ?>">
+						<div class="portfolio-item">
+							<?php echo $row['video_iframe']; ?>
+						</div>
 					</div>
+				<?php
+				}
+				?>
 
-				</div>
 			</div>
 		</div>
-	</section>
+
+	</div>
 <?php endif; ?>
+
 
 
 
