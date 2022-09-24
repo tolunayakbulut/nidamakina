@@ -4,7 +4,7 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 // Setting up the time zone
-date_default_timezone_set('Asia/Dhaka');
+date_default_timezone_set('Asia/Istanbul');
 
 // Host Name
 $dbhost = 'localhost';

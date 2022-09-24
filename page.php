@@ -375,186 +375,178 @@ foreach ($res as $row) {
 
 
 <?php if ($page_layout == 'Blog Page Layout') : ?>
-	<section class="blog">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-9">
+	<div class="container py-4">
 
-					<!-- Blog Classic Start -->
-					<div class="blog-grid">
-						<div class="row">
-							<div class="col-md-12">
+		<div class="row">
+			<div class="col-lg-3 order-lg-2">
+				<?php require_once('sidebar.php'); ?>
+			</div>
+			<div class="col-lg-9 order-lg-1">
+				<div class="blog-posts">
 
 
-								<?php
-								$statement = $pdo->prepare("SELECT * FROM tbl_news ORDER BY news_id DESC");
-								$statement->execute();
-								$total = $statement->rowCount();
-								?>
+					<?php
+					$statement = $pdo->prepare("SELECT * FROM tbl_news ORDER BY news_id DESC");
+					$statement->execute();
+					$total = $statement->rowCount();
+					?>
 
-								<?php if (!$total) : ?>
-									<p style="color:red;">Sorry! No News is found.</p>
-								<?php else : ?>
-
+					<?php if (!$total) : ?>
+						<p style="color:red;">Üzgünüz! Herhangi bir içerik bulunamadı.</p>
+					<?php else : ?>
 
 
 
-									<?php
-									/* ===================== Pagination Code Starts ================== */
-									$adjacents = 10;
 
-									$statement = $pdo->prepare("SELECT * FROM tbl_news ORDER BY news_id DESC");
-									$statement->execute();
-									$total_pages = $statement->rowCount();
+						<?php
+						/* ===================== Pagination Code Starts ================== */
+						$adjacents = 10;
 
-									$targetpage = $_SERVER['PHP_SELF'];
-									$limit = 5;
-									$page = @$_GET['page'];
-									if ($page)
-										$start = ($page - 1) * $limit;
+						$statement = $pdo->prepare("SELECT * FROM tbl_news ORDER BY news_id DESC");
+						$statement->execute();
+						$total_pages = $statement->rowCount();
+
+						$targetpage = $_SERVER['PHP_SELF'];
+						$limit = 5;
+						$page = @$_GET['page'];
+						if ($page)
+							$start = ($page - 1) * $limit;
+						else
+							$start = 0;
+
+
+						$statement = $pdo->prepare("SELECT
+						t1.news_title,
+						t1.news_slug,
+						t1.news_content,
+						t1.news_date,
+						t1.photo,
+						t1.category_id,
+
+						t2.category_id,
+						t2.category_name,
+						t2.category_slug
+						FROM tbl_news t1
+						JOIN tbl_category t2
+						ON t1.category_id = t2.category_id 		                           
+						ORDER BY t1.news_id 
+						LIMIT $start, $limit");
+						$statement->execute();
+						$result = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+
+						$s1 = $_REQUEST['slug'];
+
+						if ($page == 0) $page = 1;
+						$prev = $page - 1;
+						$next = $page + 1;
+						$lastpage = ceil($total_pages / $limit);
+						$lpm1 = $lastpage - 1;
+						$pagination = "";
+						if ($lastpage > 1) {
+							$pagination .= "<div class=\"pagination float-end\">";
+							if ($page > 1)
+								$pagination .= "<li class=\"page-item\"><a class=\"page-link\" href=\"$targetpage?slug=$s1&page=$prev\"><i class=\"fas fa-angle-left\"></i></a></li>";
+							else
+								$pagination .= "<li class=\"page-item\"><a onclick=\"return false;\" class=\"page-link\"><i class=\"fas fa-angle-left\"></i></a></li>";
+							if ($lastpage < 7 + ($adjacents * 2))   //not enough pages to bother breaking it up
+							{
+								for ($counter = 1; $counter <= $lastpage; $counter++) {
+									if ($counter == $page)
+										$pagination .= "<li class=\"page-item active\"><a class=\"page-link\" href=\"javascript:void(0)\">$counter</a></li>";
 									else
-										$start = 0;
-
-
-									$statement = $pdo->prepare("SELECT
-								   t1.news_title,
-		                           t1.news_slug,
-		                           t1.news_content,
-		                           t1.news_date,
-		                           t1.photo,
-		                           t1.category_id,
-
-		                           t2.category_id,
-		                           t2.category_name,
-		                           t2.category_slug
-		                           FROM tbl_news t1
-		                           JOIN tbl_category t2
-		                           ON t1.category_id = t2.category_id 		                           
-		                           ORDER BY t1.news_id 
-		                           LIMIT $start, $limit");
-									$statement->execute();
-									$result = $statement->fetchAll(PDO::FETCH_ASSOC);
-
-
-									$s1 = $_REQUEST['slug'];
-
-									if ($page == 0) $page = 1;
-									$prev = $page - 1;
-									$next = $page + 1;
-									$lastpage = ceil($total_pages / $limit);
-									$lpm1 = $lastpage - 1;
-									$pagination = "";
-									if ($lastpage > 1) {
-										$pagination .= "<div class=\"pagination\">";
-										if ($page > 1)
-											$pagination .= "<a href=\"$targetpage?slug=$s1&page=$prev\">&#171; previous</a>";
+										$pagination .= "<a class=\"page-link\" href=\"$targetpage?slug=$s1&page=$counter\">$counter</a>";
+								}
+							} elseif ($lastpage > 5 + ($adjacents * 2))    //enough pages to hide some
+							{
+								if ($page < 1 + ($adjacents * 2)) {
+									for ($counter = 1; $counter < 4 + ($adjacents * 2); $counter++) {
+										if ($counter == $page)
+											$pagination .= "<span class=\"current\">$counter</span>";
 										else
-											$pagination .= "<span class=\"disabled\">&#171; previous</span>";
-										if ($lastpage < 7 + ($adjacents * 2))   //not enough pages to bother breaking it up
-										{
-											for ($counter = 1; $counter <= $lastpage; $counter++) {
-												if ($counter == $page)
-													$pagination .= "<span class=\"current\">$counter</span>";
-												else
-													$pagination .= "<a href=\"$targetpage?slug=$s1&page=$counter\">$counter</a>";
-											}
-										} elseif ($lastpage > 5 + ($adjacents * 2))    //enough pages to hide some
-										{
-											if ($page < 1 + ($adjacents * 2)) {
-												for ($counter = 1; $counter < 4 + ($adjacents * 2); $counter++) {
-													if ($counter == $page)
-														$pagination .= "<span class=\"current\">$counter</span>";
-													else
-														$pagination .= "<a href=\"$targetpage?slug=$s1&page=$counter\">$counter</a>";
-												}
-												$pagination .= "...";
-												$pagination .= "<a href=\"$targetpage?slug=$s1&page=$lpm1\">$lpm1</a>";
-												$pagination .= "<a href=\"$targetpage?slug=$s1&page=$lastpage\">$lastpage</a>";
-											} elseif ($lastpage - ($adjacents * 2) > $page && $page > ($adjacents * 2)) {
-												$pagination .= "<a href=\"$targetpage?slug=$s1&page=1\">1</a>";
-												$pagination .= "<a href=\"$targetpage?slug=$s1&page=2\">2</a>";
-												$pagination .= "...";
-												for ($counter = $page - $adjacents; $counter <= $page + $adjacents; $counter++) {
-													if ($counter == $page)
-														$pagination .= "<span class=\"current\">$counter</span>";
-													else
-														$pagination .= "<a href=\"$targetpage?slug=$s1&page=$counter\">$counter</a>";
-												}
-												$pagination .= "...";
-												$pagination .= "<a href=\"$targetpage?slug=$s1&page=$lpm1\">$lpm1</a>";
-												$pagination .= "<a href=\"$targetpage?slug=$s1&page=$lastpage\">$lastpage</a>";
-											} else {
-												$pagination .= "<a href=\"$targetpage?slug=$s1&page=1\">1</a>";
-												$pagination .= "<a href=\"$targetpage?slug=$s1&page=2\">2</a>";
-												$pagination .= "...";
-												for ($counter = $lastpage - (2 + ($adjacents * 2)); $counter <= $lastpage; $counter++) {
-													if ($counter == $page)
-														$pagination .= "<span class=\"current\">$counter</span>";
-													else
-														$pagination .= "<a href=\"$targetpage?slug=$s1&page=$counter\">$counter</a>";
-												}
-											}
-										}
-										if ($page < $counter - 1)
-											$pagination .= "<a href=\"$targetpage?slug=$s1&page=$next\">next &#187;</a>";
+											$pagination .= "<li class=\"page-item\"><a class=\"page-link\" href=\"$targetpage?slug=$s1&page=$counter\">$counter</a></li>";
+									}
+									$pagination .= "...";
+									$pagination .= "<li class=\"page-item\"><a class=\"page-link\" href=\"$targetpage?slug=$s1&page=$lpm1\">$lpm1</a></li>";
+									$pagination .= "<li class=\"page-item\"><a class=\"page-link\" href=\"$targetpage?slug=$s1&page=$lastpage\">$lastpage</a></li>";
+								} elseif ($lastpage - ($adjacents * 2) > $page && $page > ($adjacents * 2)) {
+									$pagination .= "<li class=\"page-item\"><a class=\"page-link\" href=\"$targetpage?slug=$s1&page=1\">1</a></li>";
+									$pagination .= "<li class=\"page-item\"><a class=\"page-link\" href=\"$targetpage?slug=$s1&page=2\">2</a></li>";
+									$pagination .= "...";
+									for ($counter = $page - $adjacents; $counter <= $page + $adjacents; $counter++) {
+										if ($counter == $page)
+											$pagination .= "<span class=\"current\">$counter</span>";
 										else
-											$pagination .= "<span class=\"disabled\">next &#187;</span>";
-										$pagination .= "</div>\n";
+											$pagination .= "<li class=\"page-item\"><a class=\"page-link\" href=\"$targetpage?slug=$s1&page=$counter\">$counter</a></li>";
 									}
-									/* ===================== Pagination Code Ends ================== */
-									?>
-
-									<?php
-									foreach ($result as $row) {
-									?>
-										<div class="post-item">
-											<div class="image-holder">
-												<img class="img-responsive" src="<?php echo BASE_URL; ?>assets/uploads/<?php echo $row['photo']; ?>" alt="<?php echo $row['news_title']; ?>">
-											</div>
-											<div class="text">
-												<h3><a href="<?php echo BASE_URL; ?>news/<?php echo $row['news_slug']; ?>"><?php echo $row['news_title']; ?></a></h3>
-												<ul class="status">
-													<li><i class="fa fa-tag"></i>Category: <a href="<?php echo BASE_URL; ?>category/<?php echo $row['category_slug']; ?>"><?php echo $row['category_name']; ?></a></li>
-													<li><i class="fa fa-calendar"></i>Date: <?php echo $row['news_date']; ?></li>
-												</ul>
-												<p>
-													<?php echo substr($row['news_content'], 0, 200) . ' ...'; ?>
-												</p>
-												<p class="button">
-													<a href="<?php echo BASE_URL; ?>news/<?php echo $row['news_slug']; ?>">Read More</a>
-												</p>
-											</div>
-										</div>
-									<?php
+									$pagination .= "...";
+									$pagination .= "<li class=\"page-item\"><a class=\"page-link\" href=\"$targetpage?slug=$s1&page=$lpm1\">$lpm1</a></li>";
+									$pagination .= "<li class=\"page-item\"><a class=\"page-link\" href=\"$targetpage?slug=$s1&page=$lastpage\">$lastpage</a></li>";
+								} else {
+									$pagination .= "<li class=\"page-item\"><a class=\"page-link\" href=\"$targetpage?slug=$s1&page=1\">1</a></li>";
+									$pagination .= "<li class=\"page-item\"><a class=\"page-link\" href=\"$targetpage?slug=$s1&page=2\">2</a></li>";
+									$pagination .= "...";
+									for ($counter = $lastpage - (2 + ($adjacents * 2)); $counter <= $lastpage; $counter++) {
+										if ($counter == $page)
+											$pagination .= "<span class=\"current\">$counter</span>";
+										else
+											$pagination .= "<li class=\"page-item\"><a class=\"page-link\" href=\"$targetpage?slug=$s1&page=$counter\">$counter</a></li>";
 									}
-									?>
-								<?php endif; ?>
+								}
+							}
+							if ($page < $counter - 1)
+								$pagination .= "<li class=\"page-item\"><a class=\"page-link\" href=\"$targetpage?slug=$s1&page=$next\"><i class=\"fas fa-angle-right\"></i></a></li>";
+							else
+								$pagination .= "<li class=\"page-item\"><a onclick=\"return false;\" class=\"page-link\"><i class=\"fas fa-angle-right\"></i></a></li>";
+							$pagination .= "</div>\n";
+						}
+						/* ===================== Pagination Code Ends ================== */
+						?>
 
-							</div>
+						<?php
+						foreach ($result as $row) {
+						?>
+							<article class="post post-large">
+								<div class="post-image">
+									<a href="<?php echo BASE_URL; ?>news/<?php echo $row['news_slug']; ?>">
+										<img src="<?php echo BASE_URL; ?>assets/uploads/<?php echo $row['photo']; ?>" class="img-fluid img-thumbnail img-thumbnail-no-borders rounded-0" alt="<?php echo $row['news_title']; ?>" />
+									</a>
+								</div>
 
-							<div class="col-md-12">
-								<?php if ($total) : ?>
-									<?php echo $pagination; ?>
-								<?php endif; ?>
-							</div>
+								<div class="post-date">
+									<span class="day"><?php $newDate = date("d", strtotime($row['news_date']));  echo $newDate; ?></span>
+									<span class="month"><?php $newDate = date("M", strtotime($row['news_date']));  echo $newDate; ?></span>
+								</div>
 
-						</div>
-					</div>
-					<!-- Blog Classic End -->
+								<div class="post-content">
+
+									<h2 class="font-weight-semibold text-6 line-height-3 mb-3"><a href="<?php echo BASE_URL; ?>news/<?php echo $row['news_slug']; ?>"><?php echo $row['news_title']; ?></a></h2>
+									<p><?php echo substr($row['news_content'], 0, 200) . ' ...'; ?></p>
+
+									<div class="post-meta">
+										<span><i class="far fa-folder"></i> <a href="<?php echo BASE_URL; ?>category/<?php echo $row['category_slug']; ?>"><?php echo $row['category_name']; ?></a></span>
+										<span class="d-block d-sm-inline-block float-sm-end mt-3 mt-sm-0"><a href="<?php echo BASE_URL; ?>news/<?php echo $row['news_slug']; ?>" class="btn btn-xs btn-light text-1 text-uppercase">Daha Fazla</a></span>
+									</div>
+
+								</div>
+							</article>
+						<?php
+						}
+						?>
+					<?php endif; ?>
+
+
+					<?php if ($total) : ?>
+						<?php echo $pagination; ?>
+					<?php endif; ?>
 
 				</div>
-				<div class="col-md-3">
-
-					<?php require_once('sidebar.php'); ?>
-
-				</div>
-
-
-
-
 			</div>
 		</div>
-	</section>
+
+	</div>
+
+
 <?php endif; ?>
 
 
