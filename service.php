@@ -45,8 +45,6 @@ foreach ($result as $row) {
 
 
 <!-- Service Start -->
-
-
 <div class="container pt-3 pb-2">
 
 	<div class="row pt-2">
