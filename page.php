@@ -85,7 +85,6 @@ foreach ($res as $row) {
 	</section>
 <?php endif; ?>
 
-
 <?php if ($page_layout == 'Contact Us Page Layout') : ?>
 	<?php
 	$statement = $pdo->prepare("SELECT * FROM tbl_settings WHERE id=1");
@@ -310,7 +309,6 @@ foreach ($res as $row) {
 	</div>
 <?php endif; ?>
 
-
 <?php if ($page_layout == 'Video Gallery Page Layout') : ?>
 
 	<div class="container py-4">
@@ -370,9 +368,6 @@ foreach ($res as $row) {
 
 	</div>
 <?php endif; ?>
-
-
-
 
 <?php if ($page_layout == 'Blog Page Layout') : ?>
 	<div class="container py-4">
@@ -545,11 +540,7 @@ foreach ($res as $row) {
 		</div>
 
 	</div>
-
-
 <?php endif; ?>
-
-
 
 <?php if ($page_layout == 'Doctor Page Layout') : ?>
 	<section class="doctor-v3">
