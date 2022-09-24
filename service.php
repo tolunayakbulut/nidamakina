@@ -2,20 +2,16 @@
 
 <?php
 // Preventing the direct access of this page.
-if(!isset($_REQUEST['slug']))
-{
-	header('location: '.BASE_URL);
+if (!isset($_REQUEST['slug'])) {
+	header('location: ' . BASE_URL);
 	exit;
-}
-else
-{
+} else {
 	// Check the page slug is valid or not.
 	$statement = $pdo->prepare("SELECT * FROM tbl_service WHERE slug=?");
 	$statement->execute(array($_REQUEST['slug']));
 	$total = $statement->rowCount();
-	if( $total == 0 )
-	{
-		header('location: '.BASE_URL);
+	if ($total == 0) {
+		header('location: ' . BASE_URL);
 		exit;
 	}
 }
@@ -23,9 +19,8 @@ else
 // Getting the detailed data of a service from slug
 $statement = $pdo->prepare("SELECT * FROM tbl_service WHERE slug=?");
 $statement->execute(array($_REQUEST['slug']));
-$result = $statement->fetchAll(PDO::FETCH_ASSOC);				
-foreach ($result as $row)
-{
+$result = $statement->fetchAll(PDO::FETCH_ASSOC);
+foreach ($result as $row) {
 	$name              = $row['name'];
 	$slug              = $row['slug'];
 	$short_description = $row['short_description'];
@@ -34,85 +29,56 @@ foreach ($result as $row)
 	$banner            = $row['banner'];
 }
 ?>
-				
+
+
 <!-- Banner Start -->
-<div class="page-banner" style="background-image:url(<?php echo BASE_URL; ?>assets/uploads/<?php echo $banner; ?>);">
-	<div class="overlay"></div>
+<section class="page-header page-header-modern page-header-background page-header-background-sm m-0" style="background-image: url(<?php echo BASE_URL; ?>assets/uploads/<?php echo $banner; ?>); background-size: cover; background-position: center;">
 	<div class="container">
 		<div class="row">
-			<div class="col-md-12">
-				<div class="banner-text">
-					<h1>Service: <?php echo $name; ?></h1>
-				</div>
+			<div class="col-md-8 order-2 order-md-1 align-self-center p-static">
+				<h1 class="font-weight-bold text-8 mb-0">Hizmet: <?php echo $name; ?></h1>
 			</div>
 		</div>
 	</div>
-</div>
+</section>
 <!-- Banner End -->
 
 
 <!-- Service Start -->
-<section class="blog">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-9">
-				
-				<!-- Blog Classic Start -->
-				<div class="blog-grid">
-					<div class="row">
-						<div class="col-md-12">
-							
 
-							<!-- Post Item Start -->
-							<div class="post-item">
-								<div class="image-holder">
-									<img class="img-responsive" src="<?php echo BASE_URL; ?>assets/uploads/<?php echo $photo; ?>" alt="">
-								</div>
-								<div class="text">
-									<p>
-										<?php echo $description; ?>
-									</p>
-								</div>
-							</div>
-							<!-- Post Item End -->
 
-						</div>
+<div class="container pt-3 pb-2">
 
-					</div>
-				</div>
-				<!-- Blog Classic End -->
+	<div class="row pt-2">
+		<div class="col-lg-9">
 
-			</div>
-			<div class="col-md-3">
-				
-				<!-- Sidebar Container Start -->
-				<div class="sidebar">
-					<div class="widget">
-						<h4>Services</h4>
-						<ul>
-							<?php
-							$statement = $pdo->prepare("SELECT * FROM tbl_service ORDER BY name ASC");
-							$statement->execute();
-							$result = $statement->fetchAll(PDO::FETCH_ASSOC);							
-							foreach ($result as $row) {
-								?>
-								<li><a href="<?php echo BASE_URL; ?>service/<?php echo $row['slug']; ?>"><?php echo $row['name']; ?></a></li>
-								<?php
-							}
-							?>							
-						</ul>
-					</div>							
-				</div>
-				<!-- Sidebar Container End -->
-			
-			</div>
+			<h2 class="font-weight-normal text-7 mb-2"><?php echo $name; ?></h2>
 
-			
-
+			<img class="float-start img-fluid p-3" width="300" height="211" src="<?php echo BASE_URL; ?>assets/uploads/<?php echo $photo; ?>" alt="Hizmetler">
+			<p><?php echo $description; ?></p>
 
 		</div>
+
+		<div class="col-lg-3 mt-4 mt-lg-0">
+			<aside class="sidebar">
+				<h5 class="font-weight-semi-bold">Hizmetler</h5>
+				<ul class="nav nav-list flex-column mb-5">
+					<?php
+					$statement = $pdo->prepare("SELECT * FROM tbl_service ORDER BY name ASC");
+					$statement->execute();
+					$result = $statement->fetchAll(PDO::FETCH_ASSOC);
+					foreach ($result as $row) {
+					?>
+						<li class="nav-item"><a class="nav-link" href="<?php echo BASE_URL; ?>service/<?php echo $row['slug']; ?>"><?php echo $row['name']; ?></a></li>
+					<?php
+					}
+					?>
+				</ul>
+			</aside>
+		</div>
 	</div>
-</section>
+
+</div>
 <!-- Service End -->
-			
+
 <?php require_once('footer.php'); ?>
