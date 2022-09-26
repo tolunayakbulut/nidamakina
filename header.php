@@ -237,8 +237,7 @@ foreach ($result as $row) {
 			<div id="status"></div>
 		</div>
 	<?php endif; ?>
-
-
+	
 	<header id="header" class="header-effect-shrink" data-plugin-options="{'stickyEnabled': true, 'stickyEffect': 'shrink', 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': false, 'stickyChangeLogo': true, 'stickyStartAt': 30, 'stickyHeaderContainerHeight': 70}">
 		<div class="header-body header-body-bottom-border border-top-0">
 			<div class="header-top">
@@ -271,11 +270,11 @@ foreach ($result as $row) {
 									}
 									?>
 								</ul>
-								<a href="#" class="btn custom-svg-btn-style-1 custom-svg-btn-style-1-solid custom-svg-btn-style-1-small text-color-light ms-4">
+								<a href="<?php echo BASE_URL; ?>page/contact-us" class="btn custom-svg-btn-style-1 custom-svg-btn-style-1-solid custom-svg-btn-style-1-small text-color-light ms-4">
 									<svg class="custom-svg-btn-background" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 210 70" preserveAspectRatio="none">
 										<polygon fill="none" stroke="#D4D4D4" stroke-width="2" stroke-miterlimit="10" points="7,5 185,5 205,34 186,63 7,63 " />
 									</svg>
-									GET A QUOTE
+									İLETİŞİME GEÇ
 									<svg class="custom-svg-btn-arrow" version="1.1" viewBox="0 0 15.698 8.706" width="17" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 										<polygon stroke="#FFF" stroke-width="0.4" fill="#FFF" points="11.354,0 10.646,0.706 13.786,3.853 0,3.853 0,4.853 13.786,4.853 10.646,8 11.354,8.706 15.698,4.353 " />
 									</svg>
@@ -299,6 +298,77 @@ foreach ($result as $row) {
 							<div class="header-nav header-nav-links">
 								<div class="header-nav-main header-nav-main-text-capitalize header-nav-main-effect-2 header-nav-main-sub-effect-1">
 									<nav class="collapse">
+									<ul class="nav nav-pills" id="mainNav">
+											<li class="dropdown">
+												<a class="dropdown-item dropdown-toggle" href="index.html">
+													Home
+												</a>
+												<ul class="dropdown-menu">
+													<li>
+														<a class="dropdown-item" href="index.html">
+															Landing Page
+														</a>
+													</li>
+													<li>
+														<a class="dropdown-item" href="index.html#demos">
+															Demos <span class="tip tip-dark">hot</span>
+														</a>
+													</li>
+													<li class="dropdown-submenu">
+														<a class="dropdown-item" href="#">Classic</a>
+														<ul class="dropdown-menu">
+															<li><a class="dropdown-item" href="index-classic.html">Classic - Original</a></li>
+															<li><a class="dropdown-item" href="index-classic-color.html">Classic - Color</a></li>
+															<li><a class="dropdown-item" href="index-classic-light.html">Classic - Light</a></li>
+															<li><a class="dropdown-item" href="index-classic-video.html">Classic - Video</a></li>
+															<li><a class="dropdown-item" href="index-classic-video-light.html">Classic - Video - Light</a></li>
+														</ul>
+													</li>
+													<li class="dropdown-submenu">
+														<a class="dropdown-item" href="#">Corporate</a>
+														<ul class="dropdown-menu">
+															<li><a class="dropdown-item" href="index-corporate.html">Corporate - Version 1</a></li>
+															<li><a class="dropdown-item" href="index-corporate-2.html">Corporate - Version 2</a></li>
+															<li><a class="dropdown-item" href="index-corporate-3.html">Corporate - Version 3</a></li>
+															<li><a class="dropdown-item" href="index-corporate-4.html">Corporate - Version 4</a></li>
+															<li><a class="dropdown-item" href="index-corporate-5.html">Corporate - Version 5</a></li>
+															<li><a class="dropdown-item" href="index-corporate-6.html">Corporate - Version 6</a></li>
+															<li><a class="dropdown-item" href="index-corporate-7.html">Corporate - Version 7</a></li>
+															<li><a class="dropdown-item" href="index-corporate-8.html">Corporate - Version 8</a></li>
+															<li><a class="dropdown-item" href="index-corporate-9.html">Corporate - Version 9</a></li>
+															<li><a class="dropdown-item" href="index-corporate-10.html" ->Corporate - Version 10</a></li>
+															<li><a class="dropdown-item" href="index.html#demos" ->More...</a></li>
+														</ul>
+													</li>
+													<li class="dropdown-submenu">
+														<a class="dropdown-item" href="#">Portfolio</a>
+														<ul class="dropdown-menu">
+															<li><a class="dropdown-item" href="index-portfolio.html">Portfolio - Version 1</a></li>
+															<li><a class="dropdown-item" href="index-portfolio-2.html">Portfolio - Version 2</a></li>
+															<li><a class="dropdown-item" href="index-portfolio-3.html">Portfolio - Version 3</a></li>
+															<li><a class="dropdown-item" href="index-portfolio-4.html">Portfolio - Version 4</a></li>
+															<li><a class="dropdown-item" href="index-portfolio-5.html">Portfolio - Version 5</a></li>
+														</ul>
+													</li>
+													<li class="dropdown-submenu">
+														<a class="dropdown-item" href="#">Blog</a>
+														<ul class="dropdown-menu">
+															<li><a class="dropdown-item" href="index-blog.html">Blog - Version 1</a></li>
+															<li><a class="dropdown-item" href="index-blog-2.html">Blog - Version 2</a></li>
+															<li><a class="dropdown-item" href="index-blog-3.html">Blog - Version 3</a></li>
+															<li><a class="dropdown-item" href="index-blog-4.html">Blog - Version 4</a></li>
+															<li><a class="dropdown-item" href="index-blog-5.html">Blog - Version 5</a></li>
+														</ul>
+													</li>
+													<li class="dropdown-submenu">
+														<a class="dropdown-item" href="#">One Page</a>
+														<ul class="dropdown-menu">
+															<li><a class="dropdown-item" href="index-one-page.html">One Page Original</a></li>
+														</ul>
+													</li>
+												</ul>
+											</li>
+										</ul>
 										<ul class="nav nav-pills" id="mainNav">
 
 											<?php if ($home_menu_status == 'Show') : ?>
