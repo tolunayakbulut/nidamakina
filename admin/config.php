@@ -10,7 +10,7 @@ date_default_timezone_set('Asia/Istanbul');
 $dbhost = 'localhost';
 
 // Database Name
-$dbname = 'nidamakina';
+$dbname = 'nidamaki_1';
 
 // Database Username
 $dbuser = 'root';
