@@ -237,7 +237,7 @@ foreach ($result as $row) {
 			<div id="status"></div>
 		</div>
 	<?php endif; ?>
-	
+
 	<header id="header" class="header-effect-shrink" data-plugin-options="{'stickyEnabled': true, 'stickyEffect': 'shrink', 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': false, 'stickyChangeLogo': true, 'stickyStartAt': 30, 'stickyHeaderContainerHeight': 70}">
 		<div class="header-body header-body-bottom-border border-top-0">
 			<div class="header-top">
@@ -247,10 +247,10 @@ foreach ($result as $row) {
 							<div class="header-row">
 								<ul class="list list-unstyled list-inline mb-0">
 									<li class="list-inline-item text-color-dark me-4 mb-0">
-										Mail: <a href="mailto:<?php echo $contact_email; ?>" class="text-color-dark text-color-hover-primary text-decoration-none"><strong><?php echo $contact_email; ?></strong></a>
+										<a href="mailto:<?php echo $contact_email; ?>" class="text-color-dark text-color-hover-primary text-decoration-none"><strong><?php echo $contact_email; ?></strong></a>
 									</li>
 									<li class="list-inline-item text-color-dark d-none d-sm-inline-block mb-0">
-										Phone: <a href="tel:<?php echo $contact_phone; ?>" class="text-color-dark text-color-hover-primary text-decoration-none"><strong><?php echo $contact_phone; ?></strong></a>
+										<a href="tel:<?php echo $contact_phone; ?>" class="text-color-dark text-color-hover-primary text-decoration-none"><strong><?php echo $contact_phone; ?></strong></a>
 									</li>
 								</ul>
 							</div>
@@ -298,77 +298,6 @@ foreach ($result as $row) {
 							<div class="header-nav header-nav-links">
 								<div class="header-nav-main header-nav-main-text-capitalize header-nav-main-effect-2 header-nav-main-sub-effect-1">
 									<nav class="collapse">
-									<ul class="nav nav-pills" id="mainNav">
-											<li class="dropdown">
-												<a class="dropdown-item dropdown-toggle" href="index.html">
-													Home
-												</a>
-												<ul class="dropdown-menu">
-													<li>
-														<a class="dropdown-item" href="index.html">
-															Landing Page
-														</a>
-													</li>
-													<li>
-														<a class="dropdown-item" href="index.html#demos">
-															Demos <span class="tip tip-dark">hot</span>
-														</a>
-													</li>
-													<li class="dropdown-submenu">
-														<a class="dropdown-item" href="#">Classic</a>
-														<ul class="dropdown-menu">
-															<li><a class="dropdown-item" href="index-classic.html">Classic - Original</a></li>
-															<li><a class="dropdown-item" href="index-classic-color.html">Classic - Color</a></li>
-															<li><a class="dropdown-item" href="index-classic-light.html">Classic - Light</a></li>
-															<li><a class="dropdown-item" href="index-classic-video.html">Classic - Video</a></li>
-															<li><a class="dropdown-item" href="index-classic-video-light.html">Classic - Video - Light</a></li>
-														</ul>
-													</li>
-													<li class="dropdown-submenu">
-														<a class="dropdown-item" href="#">Corporate</a>
-														<ul class="dropdown-menu">
-															<li><a class="dropdown-item" href="index-corporate.html">Corporate - Version 1</a></li>
-															<li><a class="dropdown-item" href="index-corporate-2.html">Corporate - Version 2</a></li>
-															<li><a class="dropdown-item" href="index-corporate-3.html">Corporate - Version 3</a></li>
-															<li><a class="dropdown-item" href="index-corporate-4.html">Corporate - Version 4</a></li>
-															<li><a class="dropdown-item" href="index-corporate-5.html">Corporate - Version 5</a></li>
-															<li><a class="dropdown-item" href="index-corporate-6.html">Corporate - Version 6</a></li>
-															<li><a class="dropdown-item" href="index-corporate-7.html">Corporate - Version 7</a></li>
-															<li><a class="dropdown-item" href="index-corporate-8.html">Corporate - Version 8</a></li>
-															<li><a class="dropdown-item" href="index-corporate-9.html">Corporate - Version 9</a></li>
-															<li><a class="dropdown-item" href="index-corporate-10.html" ->Corporate - Version 10</a></li>
-															<li><a class="dropdown-item" href="index.html#demos" ->More...</a></li>
-														</ul>
-													</li>
-													<li class="dropdown-submenu">
-														<a class="dropdown-item" href="#">Portfolio</a>
-														<ul class="dropdown-menu">
-															<li><a class="dropdown-item" href="index-portfolio.html">Portfolio - Version 1</a></li>
-															<li><a class="dropdown-item" href="index-portfolio-2.html">Portfolio - Version 2</a></li>
-															<li><a class="dropdown-item" href="index-portfolio-3.html">Portfolio - Version 3</a></li>
-															<li><a class="dropdown-item" href="index-portfolio-4.html">Portfolio - Version 4</a></li>
-															<li><a class="dropdown-item" href="index-portfolio-5.html">Portfolio - Version 5</a></li>
-														</ul>
-													</li>
-													<li class="dropdown-submenu">
-														<a class="dropdown-item" href="#">Blog</a>
-														<ul class="dropdown-menu">
-															<li><a class="dropdown-item" href="index-blog.html">Blog - Version 1</a></li>
-															<li><a class="dropdown-item" href="index-blog-2.html">Blog - Version 2</a></li>
-															<li><a class="dropdown-item" href="index-blog-3.html">Blog - Version 3</a></li>
-															<li><a class="dropdown-item" href="index-blog-4.html">Blog - Version 4</a></li>
-															<li><a class="dropdown-item" href="index-blog-5.html">Blog - Version 5</a></li>
-														</ul>
-													</li>
-													<li class="dropdown-submenu">
-														<a class="dropdown-item" href="#">One Page</a>
-														<ul class="dropdown-menu">
-															<li><a class="dropdown-item" href="index-one-page.html">One Page Original</a></li>
-														</ul>
-													</li>
-												</ul>
-											</li>
-										</ul>
 										<ul class="nav nav-pills" id="mainNav">
 
 											<?php if ($home_menu_status == 'Show') : ?>
@@ -390,7 +319,7 @@ foreach ($result as $row) {
 												$r->execute(array($row['menu_id']));
 												$total = $r->rowCount();
 
-												echo '<li>';
+												echo '<li class="dropdown">';
 
 												if ($row['page_id'] == 0 && $row['category_id'] == 0) {
 
@@ -488,7 +417,7 @@ foreach ($result as $row) {
 												$r->execute(array($row['menu_id']));
 												$total = $r->rowCount();
 												if ($total) {
-													echo '<ul>';
+													echo '<ul class="dropdown-menu">';
 
 													$res1 = $r->fetchAll();
 													foreach ($res1 as $row1) {
@@ -501,7 +430,7 @@ foreach ($result as $row) {
 																$final_url1 = $row1['menu_url'];
 															}
 														?>
-															<a href="<?php echo $final_url1; ?>"><?php echo $row1['menu_name']; ?></a>
+															<a class="dropdown-item" href="<?php echo $final_url1; ?>"><?php echo $row1['menu_name']; ?></a>
 															<?php
 														} else {
 
@@ -511,7 +440,7 @@ foreach ($result as $row) {
 																$res2 = $s->fetchAll();
 																foreach ($res2 as $row2) {
 															?>
-																	<a href="<?php echo BASE_URL . 'page/' . $row2['page_slug']; ?>"><?php echo $row2['page_name']; ?></a>
+																	<a class="dropdown-item" href="<?php echo BASE_URL . 'page/' . $row2['page_slug']; ?>"><?php echo $row2['page_name']; ?></a>
 																<?php
 																}
 															}
@@ -522,7 +451,7 @@ foreach ($result as $row) {
 																$res2 = $s->fetchAll();
 																foreach ($res2 as $row2) {
 																?>
-																	<a href="<?php echo BASE_URL . 'category/' . $row2['category_slug']; ?>"><?php echo $row2['category_name']; ?></a>
+																	<a class="dropdown-item" href="<?php echo BASE_URL . 'category/' . $row2['category_slug']; ?>"><?php echo $row2['category_name']; ?></a>
 											<?php
 																}
 															}
@@ -543,7 +472,7 @@ foreach ($result as $row) {
 									</nav>
 								</div>
 							</div>
-							<div class="header-nav-features">
+							<!-- <div class="header-nav-features">
 								<div class="header-nav-feature header-nav-features-search d-inline-flex">
 									<a href="#" class="header-nav-features-toggle text-decoration-none" data-focus="headerSearch">
 										<i class="icons icon-magnifier header-nav-top-icon font-weight-bold text-4 top-2 text-color-hover-primary"></i>
@@ -559,7 +488,7 @@ foreach ($result as $row) {
 										</form>
 									</div>
 								</div>
-							</div>
+							</div> -->
 							<button class="btn header-btn-collapse-nav" data-bs-toggle="collapse" data-bs-target=".header-nav-main nav">
 								<i class="fas fa-bars"></i>
 							</button>

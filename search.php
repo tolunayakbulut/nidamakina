@@ -10,6 +10,7 @@ if (!isset($_REQUEST['search_string'])) {
 
 <!-- Banner Start -->
 <section class="page-header page-header-modern page-header-background page-header-background-sm m-0" style="background-image: url(<?php echo BASE_URL; ?>assets/uploads/<?php echo $banner; ?>); background-size: cover; background-position: center;">
+	<div class="overlay"></div>
 	<div class="container">
 		<div class="row">
 			<div class="col-md-8 order-2 order-md-1 align-self-center p-static">
@@ -78,7 +79,7 @@ if (!isset($_REQUEST['search_string'])) {
 						$start = 0;
 
 
-						$statement = $pdo->prepare("SELECT
+					$statement = $pdo->prepare("SELECT
 						t1.news_title,
 						t1.news_slug,
 						t1.news_content,
@@ -94,8 +95,8 @@ if (!isset($_REQUEST['search_string'])) {
 						ON t1.category_id = t2.category_id
 						WHERE t1.news_title like ? OR t1.news_content like ? 
 						LIMIT $start, $limit");
-					 $statement->execute(array($search_string, $search_string));
-					 $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+					$statement->execute(array($search_string, $search_string));
+					$result = $statement->fetchAll(PDO::FETCH_ASSOC);
 
 
 					$s1 = $_REQUEST['search_string'];

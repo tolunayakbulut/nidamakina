@@ -10,13 +10,13 @@ date_default_timezone_set('Asia/Istanbul');
 $dbhost = 'localhost';
 
 // Database Name
-$dbname = 'doctor';
+$dbname = 'nidamakina';
 
 // Database Username
 $dbuser = 'root';
 
 // Database Password
-$dbpass = 'qame1375';
+$dbpass = '';
 
 try {
 	$pdo = new PDO("mysql:host={$dbhost};dbname={$dbname}", $dbuser, $dbpass);
