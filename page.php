@@ -60,7 +60,7 @@ foreach ($res as $row) {
 
 <!-- Banner Start -->
 <section class="page-header page-header-modern page-header-background page-header-background-sm m-0" style="background-image: url(<?php echo BASE_URL; ?>assets/uploads/<?php echo $banner; ?>); background-size: cover; background-position: center;">
-	<div class="overlay"></div>
+	<div class="overlay-banner"></div>
 	<div class="container">
 		<div class="row">
 			<div class="col-md-8 order-2 order-md-1 align-self-center p-static">
@@ -251,7 +251,7 @@ foreach ($res as $row) {
 	<div class="container py-4">
 
 		<ul class="nav nav-pills sort-source sort-source-style-3 justify-content-center" data-sort-id="portfolio" data-option-key="filter" data-plugin-options="{'layoutMode': 'fitRows', 'filter': '*'}">
-			<li class="nav-item active" data-option-value=""><a class="nav-link text-1 text-uppercase active" href="#">Show All</a></li>
+			<li class="nav-item active" data-option-value=""><a class="nav-link text-1 text-uppercase active" href="#">Tümü</a></li>
 
 			<?php
 			$statement = $pdo->prepare("SELECT * FROM tbl_category_photo WHERE status=?");
@@ -315,7 +315,7 @@ foreach ($res as $row) {
 	<div class="container py-4">
 
 		<ul class="nav nav-pills sort-source sort-source-style-3 justify-content-center" data-sort-id="portfolio" data-option-key="filter" data-plugin-options="{'layoutMode': 'fitRows', 'filter': '*'}">
-			<li class="nav-item active" data-option-value=""><a class="nav-link text-1 text-uppercase active" href="#">Show All</a></li>
+			<li class="nav-item active" data-option-value=""><a class="nav-link text-1 text-uppercase active" href="#">Tümü</a></li>
 
 			<?php
 			$statement = $pdo->prepare("SELECT * FROM tbl_category_video WHERE status=?");
@@ -594,7 +594,7 @@ foreach ($res as $row) {
 								<div class="inner">
 									<div class="thumb">
 										<div class="photo" style="background-image:url(<?php echo BASE_URL; ?>assets/uploads/<?php echo $row['photo']; ?>)"></div>
-										<div class="overlay"></div>
+										<div class="overlay-banner"></div>
 										<div class="social-icons">
 											<ul>
 												<?php if ($row['facebook'] != '') : ?>

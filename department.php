@@ -52,11 +52,11 @@ foreach ($result as $row) {
 
 <!-- Banner Start -->
 <section class="page-header page-header-modern page-header-background page-header-background-sm m-0" style="background-image: url(<?php echo BASE_URL; ?>assets/uploads/<?php echo $banner; ?>); background-size: cover; background-position: center;">
-	<div class="overlay"></div>
+	<div class="overlay-banner"></div>
 	<div class="container">
 		<div class="row">
 			<div class="col-md-8 order-2 order-md-1 align-self-center p-static">
-				<h1 class="font-weight-bold text-8 mb-0">Sektör: <?php echo $dep_name; ?></h1>
+				<h1 class="font-weight-bold text-8 mb-0"><?php echo $dep_name; ?></h1>
 			</div>
 		</div>
 	</div>

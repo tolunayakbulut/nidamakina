@@ -37,7 +37,7 @@ foreach ($result as $row) {
 	<div class="container">
 		<div class="row">
 			<div class="col-md-8 order-2 order-md-1 align-self-center p-static">
-				<h1 class="font-weight-bold text-8 mb-0">Hizmet: <?php echo $name; ?></h1>
+				<h1 class="font-weight-bold text-8 mb-0"><?php echo $name; ?></h1>
 			</div>
 		</div>
 	</div>

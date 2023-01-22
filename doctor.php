@@ -61,7 +61,7 @@ foreach ($result as $row)
 
 <!-- Banner Start -->
 <div class="page-banner" style="background-image:url(<?php echo BASE_URL; ?>assets/uploads/<?php echo $banner; ?>);">
-	<div class="overlay"></div>
+	<div class="overlay-banner"></div>
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">

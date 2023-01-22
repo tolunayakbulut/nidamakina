@@ -270,7 +270,7 @@ foreach ($result as $row) {
 									}
 									?>
 								</ul>
-								<a href="<?php echo BASE_URL; ?>page/contact-us" class="btn custom-svg-btn-style-1 custom-svg-btn-style-1-solid custom-svg-btn-style-1-small text-color-light ms-4">
+								<a href="<?php echo BASE_URL; ?>page/iletisim" class="btn custom-svg-btn-style-1 custom-svg-btn-style-1-solid custom-svg-btn-style-1-small text-color-light ms-4">
 									<svg class="custom-svg-btn-background" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 210 70" preserveAspectRatio="none">
 										<polygon fill="none" stroke="#D4D4D4" stroke-width="2" stroke-miterlimit="10" points="7,5 185,5 205,34 186,63 7,63 " />
 									</svg>
@@ -289,7 +289,7 @@ foreach ($result as $row) {
 					<div class="header-column">
 						<div class="header-row">
 							<div class="header-logo">
-								<a href="<?php echo BASE_URL; ?>"><img src="<?php echo BASE_URL; ?>assets/uploads/<?php echo $logo; ?>" class="img-fluid" width="123" height="32" alt=""></a>
+								<a href="<?php echo BASE_URL; ?>"><img src="<?php echo BASE_URL; ?>assets/uploads/<?php echo $logo; ?>" class="img-fluid" alt=""></a>
 							</div>
 						</div>
 					</div>
@@ -302,7 +302,7 @@ foreach ($result as $row) {
 
 											<?php if ($home_menu_status == 'Show') : ?>
 												<li>
-													<a href="<?php echo BASE_URL; ?>" class="nav-link active">
+													<a href="<?php echo BASE_URL; ?>" class="nav-link">
 														<span class="menu-title"><?php echo $home_menu_name; ?></span>
 													</a>
 												</li>
