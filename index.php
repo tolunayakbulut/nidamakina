@@ -90,12 +90,11 @@ foreach ($result as $row) {
 			<div class="overflow-hidden mb-3">
 				<h3 class="text-color-primary font-weight-medium positive-ls-3 text-4 mb-0">Yaratıcı tasarımlar, kaliteli işler</h3>
 			</div>
-			<p class="custom-font-secondary custom-font-size-1 line-height-7 mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed imperdiet libero id nisi euismod, sed porta est consectetur.</p>
 		</div>
 		<div class="col-lg-6">
-			<p class="pt-3 pb-1 mb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed imperdiet libero id nisi euismod, sed porta est consectetur. Vestibulum auctor felis eget orci semper vestibulum. Pellentesque ultricies nibh gravida, accumsan libero luctus, molestie nunc. In nibh ipsum, blandit id faucibus ac, finibus vitae dui.</p>
-			<a href="#" class="custom-read-more btn btn-link d-inline-flex align-items-center font-weight-semibold text-decoration-none ps-0">
-				READ MORE
+			<p class="pt-3 pb-1 mb-2"Nida Makine 1985’ten bu yana makine imalatında ustalaşmış ve makine imalatı ve montajı konusunda birçok önemli işlere imza atmış olan Ahmet Özanlağan tarafından, 2012 yılında Ağır Sanayi Makinaları imal eden bir firma olarak faaliyete geçmiştir.</p>
+			<a href="/page/hakkimizda" class="custom-read-more btn btn-link d-inline-flex align-items-center font-weight-semibold text-decoration-none ps-0">
+				DAHA FAZLA
 				<svg class="ms-2" version="1.1" viewBox="0 0 15.698 8.706" width="17" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 					<polygon stroke="#FFF" stroke-width="0.1" fill="#FFF" points="11.354,0 10.646,0.706 13.786,3.853 0,3.853 0,4.853 13.786,4.853 10.646,8 11.354,8.706 15.698,4.353 " />
 				</svg>
