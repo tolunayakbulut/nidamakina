@@ -15,7 +15,6 @@ use PHPMailer\PHPMailer\Exception;
 <?php
 // Preventing the direct access of this page.
 if (!isset($_REQUEST['slug'])) {
-	die("test");
 	header('location: index.php');
 	exit;
 } else {
