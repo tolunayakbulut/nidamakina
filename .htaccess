@@ -2,15 +2,6 @@
 	Options +FollowSymLinks -MultiViews
 	
 	RewriteEngine On
-	RewriteCond %{REQUEST_URI} !\.(?:css|js|jpg|gif|png)$ [NC]
-
-	RewriteRule  ^category/(.*)$/?$     category.php?slug=$1   [NC,L]
-	RewriteRule  ^page/(.*)$/?$         page.php?slug=$1       [NC,L]
-	RewriteRule  ^news/(.*)$/?$         news.php?slug=$1       [NC,L]
-	RewriteRule  ^service/(.*)$/?$      service.php?slug=$1    [NC,L]
-	RewriteRule  ^department/(.*)$/?$   department.php?slug=$1 [NC,L]
-	RewriteRule  ^doctor/(.*)$/?$       doctor.php?slug=$1     [NC,L]
-	RewriteRule  ^search                search.php             [NC,L]
 </IfModule>
 
 <IfModule mod_headers.c>
