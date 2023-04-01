@@ -92,7 +92,7 @@ foreach ($result as $row) {
 			</div>
 		</div>
 		<div class="col-lg-6">
-			<p class="pt-3 pb-1 mb-2">Nida Makine 1985’ten bu yana makine imalatında ustalaşmış ve makine imalatı ve montajı konusunda birçok önemli işlere imza atmış olan Ahmet Özanlağan tarafından, 2012 yılında Ağır Sanayi Makinaları imal eden bir firma olarak faaliyete geçmiştir.</p>
+			<p class="pt-3 pb-1 mb-2">Nida Makina 1985’ten bu yana makine imalatında ustalaşmış ve makine imalatı ve montajı konusunda birçok önemli işlere imza atmış olan Ahmet Özanlağan tarafından, 2012 yılında Ağır Sanayi Makinaları imal eden bir firma olarak faaliyete geçmiştir.</p>
 			<a href="/page/hakkimizda" class="custom-read-more btn btn-link d-inline-flex align-items-center font-weight-semibold text-decoration-none ps-0">
 				DAHA FAZLA
 				<svg class="ms-2" version="1.1" viewBox="0 0 15.698 8.706" width="17" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
