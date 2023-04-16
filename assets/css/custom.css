@@ -35,9 +35,23 @@
 }
 
 #header .header-logo img {
-    max-width: 250px;
+  max-width: 250px;
 }
 
 #header.header-effect-shrink .header-container {
-    min-height: 80px;
+  min-height: 80px;
+}
+
+@media (max-width: 991px) {
+  #header .header-nav-main nav>ul li:hover .dropdown-menu {
+    display: block !important;
+  }
+
+  .portfolio-item iframe {
+    width: 100%;
+  }
+
+  #header .header-nav-main nav > ul li {
+    padding: 4px 0px;
+  }
 }
